@@ -30,6 +30,10 @@ fn build_client(config: Config) -> Result<Client, reqwest::Error> {
 }
 
 pub fn download_day(day: u32, path: &str) -> Result<(), reqwest::Error> {
+    if std::path::Path::new(&format!("{}/input{}.txt", path, day)).exists() {
+        return Ok(());
+    }
+
     let config = read_config();
     let year = config.get_int("year").expect("Could not read config value \"year\"");
     let client = build_client(config)?;

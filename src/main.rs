@@ -14,7 +14,5 @@ struct Opt {
 
 fn main() {
     let options = Opt::from_args();
-    if !std::path::Path::new(&format!("{}/input{}.txt", options.path, options.day)).exists() {
-        download_day(options.day, &options.path).unwrap(); 
-    }
+    download_day(options.day, &options.path).unwrap(); 
 }
